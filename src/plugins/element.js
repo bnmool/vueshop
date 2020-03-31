@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 //导入弹框提示组件
-import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem } from 'element-ui';
+import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip} from 'element-ui';
 
 Vue.use(Button);
 Vue.use(Form);
@@ -15,5 +15,14 @@ Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
+Vue.use(Card);
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Switch);
+Vue.use(Tooltip);
 Vue.prototype.$message = Message;
 

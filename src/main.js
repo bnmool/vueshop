@@ -6,6 +6,8 @@ import './plugins/element.js';
 import './assets/css/global.css';
 // 导入字体图标
 import './assets/fonts/iconfont.css';
+
+
 // 导入axios
 import axios from 'axios';
 Vue.prototype.$http = axios;
@@ -19,7 +21,12 @@ axios.interceptors.request.use(config => {
   return config;
 });
 
+
+// 关闭生产模式下给出的提示
 Vue.config.productionTip = false;
+
+
+
 
 new Vue({
   router,
