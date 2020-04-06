@@ -388,12 +388,5 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.user-setting-button {
-  background-color: #ffa500;
-  border: 1px solid #ffa500;
-}
-.user-setting-button:hover {
-  background-color: #ffd700;
-  border: 1px solid #ffd700;
-}
+
 </style>
