@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import './plugins/element.js';
+// 导入 TreeTable  组件
+import TreeTable from "vue-table-with-tree-grid"
 // 导入全局样式表
 import './assets/css/global.css';
 // 导入字体图标
@@ -24,6 +26,8 @@ axios.interceptors.request.use(config => {
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false;
+// 使用 component 注册成全局组件
+Vue.component('tree-table',TreeTable);
 
 
 
