@@ -6,7 +6,11 @@ import WelCome from '../components/WelCome'
 import Users from '../components/user/Users'
 import Rights from '../components/power/Rights'
 import Roles from '../components/power/Roles'
+<<<<<<< goods_cate
 import Cate from '../components/goods/Cate'
+=======
+import Categories from '../components/goods/Cate'
+>>>>>>> local
 
 Vue.use(VueRouter);
 
@@ -29,7 +33,11 @@ const routes = [
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
+<<<<<<< goods_cate
       { path: '/categories', component: Cate }
+=======
+      { path: '/categories', component: Categories },
+>>>>>>> local
     ],
     redirect: '/welcome'
   },

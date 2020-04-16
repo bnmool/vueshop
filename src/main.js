@@ -8,6 +8,8 @@ import TreeTable from "vue-table-with-tree-grid"
 import './assets/css/global.css';
 // 导入字体图标
 import './assets/fonts/iconfont.css';
+// 导入表单树
+import TreeTable from 'vue-table-with-tree-grid';
 
 
 // 导入axios
@@ -26,10 +28,15 @@ axios.interceptors.request.use(config => {
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false;
+<<<<<<< goods_cate
 // 使用 component 注册成全局组件
 Vue.component('tree-table',TreeTable);
 
 
+=======
+// 注册表单树组件
+Vue.component('tree-table',TreeTable);
+>>>>>>> local
 
 
 new Vue({

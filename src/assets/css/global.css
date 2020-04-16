@@ -79,6 +79,12 @@ html, body, #app{
     border: 1px solid #ffd700;
   }
   /* 级联选择器 */
+<<<<<<< goods_cate
   .el-cascader-panel{
     height: 400px;
 }
+=======
+.el-cascader-panel {
+    height: 400px;
+  }
+>>>>>>> local
