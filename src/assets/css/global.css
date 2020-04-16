@@ -78,3 +78,7 @@ html, body, #app{
     background-color: #ffd700;
     border: 1px solid #ffd700;
   }
+  /* 级联选择器 */
+.el-cascader-panel {
+    height: 400px;
+  }
