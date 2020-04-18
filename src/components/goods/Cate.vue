@@ -37,7 +37,6 @@
           <el-tag v-else size="mini" type="warning">三级</el-tag>
         </template>
 
-
         <!-- 操作 -->
         <template class="opt-btn" slot="opt" slot-scope="scope">
           <div class="btn-div">
@@ -51,17 +50,21 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="querInfo.pagenum"
+        :current-page="queryInfo.pagenum"
         :page-sizes="[3,5,10,15]"
-        :page-size="querInfo.pagesize"
+        :page-size="queryInfo.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       ></el-pagination>
     </el-card>
 
-
     <!-- 添加分类的对话框 -->
-    <el-dialog title="添加分类" :visible.sync="addCateDialogVisible" width="50%" @close="addCateDialogClosed">
+    <el-dialog
+      title="添加分类"
+      :visible.sync="addCateDialogVisible"
+      width="50%"
+      @close="addCateDialogClosed"
+    >
       <!-- 添加分类的表单 -->
       <el-form
         :model="addCateForm"
@@ -100,7 +103,7 @@ export default {
       // 商品分类的数据列表，默认为空
       cateList: [],
       // 查询条件
-      querInfo: {
+      queryInfo: {
         type: 3,
         pagenum: 1,
         pagesize: 5
@@ -160,10 +163,10 @@ export default {
       parentCateList: [],
       // 指定级联选择器的配置对象
       cascaderProps: {
-        value: 'cat_id',
-        label: 'cat_name',
-        children: 'children',
-        expandTrigger: 'hover',
+        value: "cat_id",
+        label: "cat_name",
+        children: "children",
+        expandTrigger: "hover",
         checkStrictly: true
       },
 
@@ -177,8 +180,8 @@ export default {
   methods: {
     // 获取商品列表数据
     async getCateList() {
-      const { data: res } = await this.$http.get('categories', {
-        params: this.querInfo
+      const { data: res } = await this.$http.get("categories", {
+        params: this.queryInfo
       });
       if (res.meta.status !== 200) {
         return this.$message.error("获取商品分类失败");
@@ -188,15 +191,15 @@ export default {
       // 为总数据条数赋值
       this.total = res.data.total;
     },
-    
+
     // 监听pageSize改变的事件
     handleSizeChange(newSize) {
-      this.querInfo.pagesize = newSize;
+      this.queryInfo.pagesize = newSize;
       this.getCateList();
     },
     // 监听 pagenum 的改变
     handleCurrentChange(newPage) {
-      this.querInfo.pagenum = newPage;
+      this.queryInfo.pagenum = newPage;
       this.getCateList();
     },
     // 点击按钮展示添加分类对话框
@@ -208,7 +211,7 @@ export default {
     },
     // 获取父级分类的数据列表
     async getParentCateList() {
-      const { data: res } = await this.$http.get('categories', {
+      const { data: res } = await this.$http.get("categories", {
         params: {
           type: 2
         }
@@ -239,30 +242,30 @@ export default {
       }
     },
     // 点击按钮，添加新的分类
-   addCate() {
+    addCate() {
       this.$refs.addCateFormRef.validate(async valid => {
-        if (!valid) return
+        if (!valid) return;
         const { data: res } = await this.$http.post(
-          'categories',
+          "categories",
           this.addCateForm
-        )
+        );
 
         if (res.meta.status !== 201) {
-          return this.$message.error('添加分类失败！')
+          return this.$message.error("添加分类失败！");
         }
 
-        this.$message.success('添加分类成功！')
+        this.$message.success("添加分类成功！");
         this.getCateList();
         this.addCateDialogVisible = false;
-      })
+      });
     },
     // 监听对话框的关闭事件，重置表单数据
-    addCateDialogClosed(){
+    addCateDialogClosed() {
       // 通过 ref 绑定表单引用来监听 .resetFields
       this.$refs.addCateFormRef.resetFields();
       this.selectedKeys = [];
-      this.addCateForm.cat_level=0;
-      this.addCateForm.cate_pid=0;
+      this.addCateForm.cat_level = 0;
+      this.addCateForm.cate_pid = 0;
     }
   }
 };
@@ -283,6 +286,4 @@ export default {
   display: block;
 }
 
-
 </style>
-<template>
