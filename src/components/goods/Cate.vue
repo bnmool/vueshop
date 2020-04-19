@@ -53,7 +53,11 @@
         :current-page="queryInfo.pagenum"
         :page-sizes="[3,5,10,15]"
 <<<<<<< HEAD
+<<<<<<< HEAD
         :page-size="queryInfo.pagesize"
+=======
+        :page-size="querInfo.pagesize"
+>>>>>>> master
 =======
         :page-size="querInfo.pagesize"
 >>>>>>> master

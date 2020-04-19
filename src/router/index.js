@@ -8,7 +8,10 @@ import Rights from '../components/power/Rights'
 import Roles from '../components/power/Roles'
 import Categories from '../components/goods/Cate'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Params from '../components/goods/Params'
+=======
+>>>>>>> master
 =======
 >>>>>>> master
 
@@ -35,8 +38,11 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/categories', component: Categories },
 <<<<<<< HEAD
+<<<<<<< HEAD
       { path: '/params', component: Params }
 
+=======
+>>>>>>> master
 =======
 >>>>>>> master
     ],

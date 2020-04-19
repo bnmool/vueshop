@@ -2,7 +2,11 @@ import Vue from 'vue';
 
 //导入弹框提示组件
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane} from 'element-ui';
+=======
+import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader} from 'element-ui';
+>>>>>>> master
 =======
 import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader} from 'element-ui';
 >>>>>>> master
@@ -43,6 +47,10 @@ Vue.prototype.$confirm = MessageBox.confirm;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
