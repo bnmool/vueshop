@@ -7,7 +7,10 @@ import Users from '../components/user/Users'
 import Rights from '../components/power/Rights'
 import Roles from '../components/power/Roles'
 import Categories from '../components/goods/Cate'
+<<<<<<< HEAD
 import Params from '../components/goods/Params'
+=======
+>>>>>>> master
 
 Vue.use(VueRouter);
 
@@ -31,8 +34,11 @@ const routes = [
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
       { path: '/categories', component: Categories },
+<<<<<<< HEAD
       { path: '/params', component: Params }
 
+=======
+>>>>>>> master
     ],
     redirect: '/welcome'
   },
@@ -53,4 +59,3 @@ router.beforeEach((to, from, next) => {
 });
 
 
-export default router
