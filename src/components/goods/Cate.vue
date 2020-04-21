@@ -52,15 +52,7 @@
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pagenum"
         :page-sizes="[3,5,10,15]"
-<<<<<<< HEAD
-<<<<<<< HEAD
         :page-size="queryInfo.pagesize"
-=======
-        :page-size="querInfo.pagesize"
->>>>>>> master
-=======
-        :page-size="querInfo.pagesize"
->>>>>>> master
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       ></el-pagination>
