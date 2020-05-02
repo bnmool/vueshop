@@ -82,3 +82,15 @@ html, body, #app{
 .el-cascader-panel {
     height: 400px;
   }
+/* 步骤进度条 */
+.el-steps{
+      margin:15px 0;
+  }
+.el-step.is-simple .el-step__title{
+    font-size: 14px;
+    font-weight: normal;
+    color:#bbb;
+}
+.ql-editor{
+    min-height:300px;
+}

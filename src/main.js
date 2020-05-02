@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+// 导入 element 组件
 import './plugins/element.js';
 // 导入全局样式表
 import './assets/css/global.css';
@@ -8,6 +9,13 @@ import './assets/css/global.css';
 import './assets/fonts/iconfont.css';
 // 导入表单树
 import TreeTable from 'vue-table-with-tree-grid';
+
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑器对应的样式
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 
 // 导入axios
@@ -27,7 +35,31 @@ axios.interceptors.request.use(config => {
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false;
 // 注册表单树组件
-Vue.component('tree-table',TreeTable);
+Vue.component('tree-table', TreeTable);
+// 将富文本编辑器，注册为全局可用的组件
+Vue.use(VueQuillEditor)
+
+Vue.filter('dataFormat', function (originVal) {
+  function addZero(i) {
+    return i < 10 ? "0" + i : i + "";
+  }
+  const dt = new Date(originVal);
+  let y = dt.getFullYear();
+  let m = dt.getMonth() + 1;
+  let d = dt.getDay();
+  let hh = dt.getHours();
+  let mm = dt.getMinutes();
+  let ss = dt.getSeconds();
+  y = addZero(y);
+  m = addZero(m);
+  d = addZero(d);
+  hh = addZero(hh);
+  mm = addZero(mm);
+  ss = addZero(ss);
+
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+
+})
 
 
 new Vue({
