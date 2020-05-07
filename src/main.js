@@ -17,6 +17,10 @@ import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 
+// 导入时间轴 css
+// import './plugins/timeline/timeline.css'
+// import './plugins/timeline-item/timeline-item.css'
+
 
 // 导入axios
 import axios from 'axios';
@@ -30,14 +34,17 @@ axios.interceptors.request.use(config => {
   // 最后必须要 return config
   return config;
 });
-
+// 导入城市数据
+import cityData from './assets/js/citydata.js'
+// 设置城市组件使用方式
+Vue.prototype.cityData = cityData;
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false;
 // 注册表单树组件
 Vue.component('tree-table', TreeTable);
 // 将富文本编辑器，注册为全局可用的组件
-Vue.use(VueQuillEditor)
+Vue.use(VueQuillEditor);
 
 Vue.filter('dataFormat', function (originVal) {
   function addZero(i) {

@@ -1,7 +1,10 @@
 import Vue from 'vue';
 
 //导入弹框提示组件
-import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane,Steps,Step,Checkbox,CheckboxGroup,Upload} from 'element-ui';
+import { Message, Form, FormItem, Input, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,Tabs,TabPane,Steps,Step,Checkbox,CheckboxGroup,Upload,TimelineItem,Timeline} from 'element-ui';
+
+// import TimelineItem from './timeline-item/index.js';
+// import Timeline from './timeline/index.js';
 
 Vue.use(Button);
 Vue.use(Form);
@@ -39,6 +42,8 @@ Vue.use(Step);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Upload);
+Vue.use(Timeline);
+Vue.use(TimelineItem);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 
