@@ -10,6 +10,7 @@ import './assets/fonts/iconfont.css';
 // 导入表单树
 import TreeTable from 'vue-table-with-tree-grid';
 
+
 // 导入富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
 // 导入富文本编辑器对应的样式
@@ -20,6 +21,10 @@ import 'quill/dist/quill.bubble.css' // for bubble theme
 // 导入时间轴 css
 // import './plugins/timeline/timeline.css'
 // import './plugins/timeline-item/timeline-item.css'
+// 导入 echarts
+import echarts from 'echarts'
+// 设置 echarts 用法
+Vue.prototype.$echarts = echarts;
 
 
 // 导入axios
@@ -34,10 +39,18 @@ axios.interceptors.request.use(config => {
   // 最后必须要 return config
   return config;
 });
+
+
+
 // 导入城市数据
 import cityData from './assets/js/citydata.js'
 // 设置城市组件使用方式
 Vue.prototype.cityData = cityData;
+
+
+
+
+
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false;

@@ -172,7 +172,7 @@ export default {
       if (res.meta.status !== 200) {
         return this.$message.error("获取物流进度失败");
       }
-      
+
       this.progressInfo = res.data;
       console.log(this.progressInfo);
       this.progressVisible = !this.progressVisible;
