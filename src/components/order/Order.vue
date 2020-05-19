@@ -32,7 +32,7 @@
           <template slot-scope="scope">{{scope.row.create_time | dataFormat}}</template>
         </el-table-column>
         <el-table-column align="center" label="操作">
-          <template slot-scope="scope">
+          <template>
             <el-button size="mini" type="primary" icon="el-icon-edit" @click="showBox()">编辑</el-button>
             <el-button
               size="mini"
@@ -103,7 +103,7 @@ export default {
     return {
       // 查询对象
       queryInfo: {
-        query: "",
+        query: '',
         pagenum: 1,
         pagesize: 10
       },
@@ -113,21 +113,21 @@ export default {
       cityData: this.cityData,
       addressForm: {
         address1: [],
-        address2: ""
+        address2: ''
       },
       addressFormRules: {
         address1: [
           {
             required: true,
-            message: "请选择省市区县",
-            trigger: "blur"
+            message: '请选择省市区县',
+            trigger: 'blur'
           }
         ],
         address2: [
           {
             required: true,
-            message: "请填写详细地址",
-            trigger: "blur"
+            message: '请填写详细地址',
+            trigger: 'blur'
           }
         ]
       },
@@ -142,11 +142,11 @@ export default {
   },
   methods: {
     async getOrderList() {
-      const { data: res } = await this.$http.get("orders", {
+      const { data: res } = await this.$http.get('orders', {
         params: this.queryInfo
       });
       if (res.meta.status !== 200) {
-        return this.$message.error("获取订单列表失败");
+        return this.$message.error('获取订单列表失败');
       }
 
       console.log(res);
@@ -168,9 +168,9 @@ export default {
       this.$refs.addressFormRef.resetFields();
     },
     async showProgressBox() {
-      const { data: res } = await this.$http.get("/kuaidi/1106975712662");
+      const { data: res } = await this.$http.get('/kuaidi/1106975712662');
       if (res.meta.status !== 200) {
-        return this.$message.error("获取物流进度失败");
+        return this.$message.error('获取物流进度失败');
       }
 
       this.progressInfo = res.data;

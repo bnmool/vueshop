@@ -61,34 +61,34 @@
 export default {
   data() {
     return {
-      //左侧菜单数据
+      // 左侧菜单数据
       menulist: [],
       iconsObj: {
-        "125": "el-icon-user",
-        "103": "el-icon-box",
-        "101": "el-icon-shopping-cart-1",
-        "102": "el-icon-notebook-2",
-        "145": "el-icon-document"
+        125: 'el-icon-user',
+        103: 'el-icon-box',
+        101: 'el-icon-shopping-cart-1',
+        102: 'el-icon-notebook-2',
+        145: 'el-icon-document'
       },
       // 是否折叠
       isCollapse: false,
       // 被激活的链接地址
-      activePath: ""
+      activePath: ''
     };
   },
   created() {
     this.getMenuList();
-    this.activePath=window.sessionStorage.getItem("activePath")
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     // 退出
     logOut() {
       window.sessionStorage.clear();
-      this.$router.push("/login");
+      this.$router.push('/login');
     },
     // 获取所有的菜单
     async getMenuList() {
-      const { data: res } = await this.$http.get("menus");
+      const { data: res } = await this.$http.get('menus');
       console.log(res);
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
       this.menulist = res.data;
@@ -99,12 +99,12 @@ export default {
     },
     // 点击回到 Home
     gotoHome() {
-      this.$router.push("/home");
+      this.$router.push('/home');
     },
     // 保存链接的激活状态
     saveNavState(activePath) {
-      window.sessionStorage.setItem("activePath", activePath);
-      this.activePath=activePath;
+      window.sessionStorage.setItem('activePath', activePath);
+      this.activePath = activePath;
     }
   }
 };

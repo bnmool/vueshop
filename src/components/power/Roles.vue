@@ -51,11 +51,12 @@
                     <el-tag
                       closable
                       @close="removeRightById(scope.row,item3.id)"
-                      v-for="(item3, i3) in item2.children"
+                      v-for="(item3) in item2.children"
                       :key="item3.id"
                       type="warning"
                     >{{item3.authName}}</el-tag>
                   </el-col>
+
                 </el-row>
               </el-col>
             </el-row>
@@ -118,12 +119,12 @@ export default {
       rightsList: [],
       // 树形控件的绑定对象
       treeProps: {
-        children: "children",
-        label: "authName"
+        children: 'children',
+        label: 'authName'
       },
       defKeys: [],
       // 当前即将分配角色的 id
-      roleId: ""
+      roleId: ''
     };
   },
   created() {
@@ -132,9 +133,9 @@ export default {
   methods: {
     // 获取所有角色的列表
     async getRolesList() {
-      const { data: res } = await this.$http.get("roles");
+      const { data: res } = await this.$http.get('roles');
       if (res.meta.status !== 200) {
-        return this.$messages.errod("获取角色列表失败!");
+        return this.$messages.errod('获取角色列表失败!');
       }
       this.rolelist = res.data;
       console.log(this.rolelist);
@@ -144,23 +145,23 @@ export default {
     async removeRightById(role, rightId) {
       // 弹框提示用户是否要删除
       const confirmResult = await this.$confirm(
-        "此操作将永久删除该文件, 是否继续?",
-        "提示",
+        '此操作将永久删除该文件, 是否继续?',
+        '提示',
         {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
         }
       ).catch(err => err);
-      if (confirmResult !== "confirm") {
-        return this.$message.info("取消了删除");
+      if (confirmResult !== 'confirm') {
+        return this.$message.info('取消了删除');
       }
       // 发起删除请求
       const { data: res } = await this.$http.delete(
         `roles/${role.id}/rights/${rightId}`
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("删除权限失败");
+        return this.$message.error('删除权限失败');
       }
       // 删除成功重新获取新的数据
       //  this.getRolesList();
@@ -171,9 +172,9 @@ export default {
       // 获取当前需要分配的 id 方便修改后的 id
       this.roleId = role.id;
       // 获取所有权限的数据
-      const { data: res } = await this.$http.get("rights/tree");
+      const { data: res } = await this.$http.get('rights/tree');
       if (res.meta.status !== 200) {
-        return this.$message.err("获取权限失败");
+        return this.$message.err('获取权限失败');
       }
       // 获取的权限保存到 data 中
       this.rightsList = res.data;
@@ -202,16 +203,16 @@ export default {
         ...this.$refs.treeRef.getCheckedKeys(),
         ...this.$refs.treeRef.getHalfCheckedKeys()
       ];
-      const idStr = keys.join(",");
+      const idStr = keys.join(',');
       const {
         data: res
       } = await this.$http.post(`roles/${this.roleId}/rights`, {
         rids: idStr
       });
       if (res.meta.status !== 200) {
-        return this.$message.error("分配权限失败");
+        return this.$message.error('分配权限失败');
       }
-      this.$message.success("分配权限成功");
+      this.$message.success('分配权限成功');
       this.getRolesList();
       this.setRightDialogVisible = false;
     }
@@ -229,7 +230,7 @@ export default {
 .bdbottom {
   border-bottom: 1px solid #eee;
 }
-// 剧中对齐
+// 居中对齐
 .vcenter {
   display: flex;
   align-items: center;

@@ -10,7 +10,9 @@
     <el-card>
       <el-row>
         <el-col>
-          <el-button type="primary" @click="showAddCateDialog">添加分类</el-button>
+          <el-button type="primary" @click="showAddCateDialog"
+            >添加分类</el-button
+          >
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -26,22 +28,39 @@
       >
         <!-- 是否有效 -->
         <template slot="isok" slot-scope="scope">
-          <i style="color:lightgreen;" class="el-icon-success" v-if="scope.row.cat_deleted===false"></i>
+          <i
+            style="color:lightgreen;"
+            class="el-icon-success"
+            v-if="scope.row.cat_deleted === false"
+          ></i>
           <i style="color:red;" class="el-icon-error" v-else></i>
         </template>
 
         <!-- 排序 -->
         <template slot="order" slot-scope="scope">
-          <el-tag v-if="scope.row.cat_level===0" size="mini">一级</el-tag>
-          <el-tag v-else-if="scope.row.cat_level===1" size="mini" type="success">二级</el-tag>
+          <el-tag v-if="scope.row.cat_level === 0" size="mini">一级</el-tag>
+          <el-tag
+            v-else-if="scope.row.cat_level === 1"
+            size="mini"
+            type="success"
+            >二级</el-tag
+          >
           <el-tag v-else size="mini" type="warning">三级</el-tag>
         </template>
 
         <!-- 操作 -->
-        <template class="opt-btn" slot="opt" slot-scope="scope">
+        <template class="opt-btn" slot="opt">
           <div class="btn-div">
-            <el-button class="btn1" size="mini" type="primary" icon="el-icon-edit">编辑</el-button>
-            <el-button size="mini" type="danger" icon="el-icon-delete">搜索</el-button>
+            <el-button
+              class="btn1"
+              size="mini"
+              type="primary"
+              icon="el-icon-edit"
+              >编辑</el-button
+            >
+            <el-button size="mini" type="danger" icon="el-icon-delete"
+              >搜索</el-button
+            >
           </div>
         </template>
       </tree-table>
@@ -51,7 +70,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pagenum"
-        :page-sizes="[3,5,10,15]"
+        :page-sizes="[3, 5, 10, 15]"
         :page-size="queryInfo.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -113,29 +132,29 @@ export default {
       // 为 table 指定列的定义
       columns: [
         {
-          label: "分类名称",
-          prop: "cat_name"
+          label: '分类名称',
+          prop: 'cat_name'
         },
         {
           // 表示将当前列定义为模板类
-          label: "是否有效",
-          type: "template",
+          label: '是否有效',
+          type: 'template',
           // 表示当前这一类使用模板名称
-          template: "isok"
+          template: 'isok'
         },
         {
           // 表示将当前列定义为模板类
-          label: "排序",
-          type: "template",
+          label: '排序',
+          type: 'template',
           // 表示当前这一类使用模板名称
-          template: "order"
+          template: 'order'
         },
         {
           // 表示将当前列定义为模板类
-          label: "操作",
-          type: "template",
+          label: '操作',
+          type: 'template',
           // 表示当前这一类使用模板名称
-          template: "opt"
+          template: 'opt'
         }
       ],
       // 控制添加分类对话框的显示隐藏
@@ -144,7 +163,7 @@ export default {
       // 添加分类的表单数据对象
       addCateForm: {
         // 将要添加的分类的名称
-        cat_name: "",
+        cat_name: '',
         // 父级分类的 id
         cat_pid: 0,
         // 分类的等级默认要添加的是 1 级分类
@@ -154,8 +173,8 @@ export default {
         cat_name: [
           {
             required: true,
-            message: "请输入分类名称",
-            trigger: "blur"
+            message: '请输入分类名称',
+            trigger: 'blur'
           }
         ]
       },
@@ -163,10 +182,10 @@ export default {
       parentCateList: [],
       // 指定级联选择器的配置对象
       cascaderProps: {
-        value: "cat_id",
-        label: "cat_name",
-        children: "children",
-        expandTrigger: "hover",
+        value: 'cat_id',
+        label: 'cat_name',
+        children: 'children',
+        expandTrigger: 'hover',
         checkStrictly: true
       },
 
@@ -180,11 +199,11 @@ export default {
   methods: {
     // 获取商品列表数据
     async getCateList() {
-      const { data: res } = await this.$http.get("categories", {
+      const { data: res } = await this.$http.get('categories', {
         params: this.queryInfo
       });
       if (res.meta.status !== 200) {
-        return this.$message.error("获取商品分类失败");
+        return this.$message.error('获取商品分类失败');
       }
       // 把数据列表赋值给 cateList
       this.cateList = res.data.result;
@@ -211,13 +230,13 @@ export default {
     },
     // 获取父级分类的数据列表
     async getParentCateList() {
-      const { data: res } = await this.$http.get("categories", {
+      const { data: res } = await this.$http.get('categories', {
         params: {
           type: 2
         }
       });
       if (res.meta.status !== 200) {
-        return this.$message.error("获取父级分类数据失败！");
+        return this.$message.error('获取父级分类数据失败！');
       }
       this.parentCateList = res.data;
     },
@@ -232,13 +251,11 @@ export default {
         ];
         // 为当前分类的等级赋值
         this.addCateForm.cat_level = this.selectedKeys.length;
-        return;
       } else {
         // 父级分类的 id
         this.addCateForm.cat_pid = 0;
         // 为当前分类的等级赋值
         this.addCateForm.cat_level = 0;
-        return;
       }
     },
     // 点击按钮，添加新的分类
@@ -246,15 +263,15 @@ export default {
       this.$refs.addCateFormRef.validate(async valid => {
         if (!valid) return;
         const { data: res } = await this.$http.post(
-          "categories",
+          'categories',
           this.addCateForm
         );
 
         if (res.meta.status !== 201) {
-          return this.$message.error("添加分类失败！");
+          return this.$message.error('添加分类失败！');
         }
 
-        this.$message.success("添加分类成功！");
+        this.$message.success('添加分类成功！');
         this.getCateList();
         this.addCateDialogVisible = false;
       });
@@ -285,5 +302,4 @@ export default {
   width: 100%;
   display: block;
 }
-
 </style>

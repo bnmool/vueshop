@@ -201,8 +201,7 @@
     </el-dialog>
   </div>
 </template>
-  </div>
-</template>
+
 <script>
 export default {
   data() {
@@ -214,20 +213,20 @@ export default {
       // 指定级联选择器的配置对象
       cascaderProps: {
         // value 指定选择的值
-        value: "cat_id",
+        value: 'cat_id',
         // label 指定选中的值
-        label: "cat_name",
+        label: 'cat_name',
         // children 指定父子节点嵌套属性
-        children: "children",
+        children: 'children',
         // hover 级联选择器打开方式
-        expandTrigger: "hover",
+        expandTrigger: 'hover',
         // 允许选择父级节点
         checkStrictly: false
       },
       // 级联选择器双向绑定到的数组
       selectedCateKeys: [],
       // tab 标签页默认展示 first
-      activeName: "many",
+      activeName: 'many',
       // 动态参数的数据
       manyTableData: [],
       // 静态属性的数据
@@ -241,8 +240,8 @@ export default {
         attr_name: [
           {
             required: true,
-            message: "请输入参数名称",
-            tigger: "blur"
+            message: '请输入参数名称',
+            tigger: 'blur'
           }
         ]
       },
@@ -255,8 +254,8 @@ export default {
         attr_name: [
           {
             required: true,
-            message: "请输入参数名称",
-            tigger: "blur"
+            message: '请输入参数名称',
+            tigger: 'blur'
           }
         ]
       }
@@ -267,9 +266,9 @@ export default {
   },
   methods: {
     async getCateList() {
-      const { data: res } = await this.$http.get("categories");
+      const { data: res } = await this.$http.get('categories');
       if (res.meta.status !== 200) {
-        return this.$message.error("获取数据失败");
+        return this.$message.error('获取数据失败');
       }
       this.cateList = res.data;
       console.log(this.cateList);
@@ -304,20 +303,20 @@ export default {
         }
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("获取参数列表失败");
+        return this.$message.error('获取参数列表失败');
       }
 
       res.data.forEach(item => {
         // 解决出现数组空白项，如果数组不为空则循环出数据，如果为空则返回一个空数组
-        item.attr_vals = item.attr_vals ? item.attr_vals.split(" ") : [];
+        item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : [];
         // 控制文本框的显示与隐藏
         item.inputVisible = false;
         // 文本框的输入的值
-        item.inputValue = "";
+        item.inputValue = '';
       });
 
       console.log(res.data);
-      if (this.activeName === "many") {
+      if (this.activeName === 'many') {
         this.manyTableData = res.data;
       } else {
         this.onlyTableData = res.data;
@@ -340,20 +339,20 @@ export default {
           }
         );
         if (res.meta.status !== 201) {
-          return this.$message.error("添加参数失败！");
+          return this.$message.error('添加参数失败！');
         }
-        this.$message.success("添加参数成功！");
+        this.$message.success('添加参数成功！');
         this.addDialogVisible = false;
         this.getParamsData();
       });
     },
 
     // 点击按钮展示修改的对话框
-    async showEditDialog(attr_id) {
+    async showEditDialog(attrId) {
       // 查询当前参数的信息
       this.editDialogVisible = true;
       const { data: res } = await this.$http.get(
-        `categories/${this.cateId}/attributes/${attr_id}`,
+        `categories/${this.cateId}/attributes/${attrId}`,
         {
           params: {
             attr_sel: this.activeName
@@ -361,7 +360,7 @@ export default {
         }
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("获取参数信息失败");
+        return this.$message.error('获取参数信息失败');
       }
       this.editForm = res.data;
     },
@@ -375,43 +374,43 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return;
         const { data: res } = await this.$http.put(
-          `categories/${this.cateId}/attributes/${this.editForm.attr_id}`,
+          `categories/${this.cateId}/attributes/${this.editForm.attrId}`,
           {
             attr_name: this.editForm.attr_name,
             attr_sel: this.activeName
           }
         );
         if (res.meta.status !== 200) {
-          return this.$message.error("编辑数据失败");
+          return this.$message.error('编辑数据失败');
         }
-        this.$message.success("修改参数成功！");
+        this.$message.success('修改参数成功！');
         this.getParamsData();
         this.editDialogVisible = false;
       });
     },
     // 根据 id删除对应的参数
-    async removeParams(attr_id) {
+    async removeParams(attrId) {
       const confirmResult = await this.$confirm(
-        "此操作将永久删除改数据，是否继续",
-        "提示",
+        '此操作将永久删除改数据，是否继续',
+        '提示',
         {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
         }
       ).catch(err => err);
       // 用户取消了删除的操作
-      if (confirmResult !== "confirm") {
-        return this.$message.info("已经取消删除!");
+      if (confirmResult !== 'confirm') {
+        return this.$message.info('已经取消删除!');
       }
       // 删除的业务逻辑
       const { data: res } = await this.$http.delete(
-        `categories/${this.cateId}/attributes/${attr_id}`
+        `categories/${this.cateId}/attributes/${attrId}`
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("编辑数据失败");
+        return this.$message.error('编辑数据失败');
       }
-      this.$message.success("删除数据成功！");
+      this.$message.success('删除数据成功！');
       this.getParamsData();
     },
     // 将对 attr_vals 的操作保存到数据库
@@ -423,25 +422,25 @@ export default {
         {
           attr_name: row.attr_name,
           attr_sel: row.attr_sel,
-          attr_vals: row.attr_vals.join(" ")
+          attr_vals: row.attr_vals.join(' ')
         }
       );
       if (res.meta.status !== 200) {
-        return this.$message.error("添加参数项失败！");
+        return this.$message.error('添加参数项失败！');
       }
-      this.$message.success("添加参数项成功！");
+      this.$message.success('添加参数项成功！');
     },
     // 文本框失去焦点，或按下了 enter 都会触发
     async handleInputConfirm(row) {
-      console.log("ok");
+      console.log('ok');
       if (row.inputValue.trim().length === 0) {
-        row.inputValue = "";
+        row.inputValue = '';
         row.inputVisible = false;
         return;
       }
       // 如果没有 return 则证明输入的内容需要做判断处理
       row.attr_vals.push(row.inputValue.trim());
-      row.inputValue = "";
+      row.inputValue = '';
       this.saveAttrVlues(row);
     },
     // 点击按钮显示文本输入框
@@ -477,7 +476,7 @@ export default {
     },
     // 动态计算标题的文本
     titleText() {
-      return this.activeName === "many" ? "动态参数" : "静态属性";
+      return this.activeName === 'many' ? '动态参数' : '静态属性';
     }
   }
 };
@@ -499,4 +498,3 @@ export default {
   width: 100px;
 }
 </style>
-

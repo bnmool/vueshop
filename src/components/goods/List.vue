@@ -66,7 +66,7 @@ export default {
     return {
       // 查询参数对象
       queryInfo: {
-        query: "",
+        query: '',
         pagenum: 1,
         pagesize: 10
       },
@@ -82,14 +82,14 @@ export default {
   methods: {
     // 根据分页获取对应的商品列表
     async getGoodsList() {
-      const { data: res } = await this.$http.get("goods", {
+      const { data: res } = await this.$http.get('goods', {
         params: this.queryInfo
       });
       console.log(res.data);
       if (res.meta.status !== 200) {
-        return this.$message.error("获取是商品列表失败");
+        return this.$message.error('获取是商品列表失败');
       }
-      this.$message.success("获取商品列表成功");
+      this.$message.success('获取商品列表成功');
       this.goodsList = res.data.goods;
       this.total = res.data.total;
     },
@@ -103,24 +103,24 @@ export default {
     },
     // 根据 id 删除对应数据
     async removeById(id) {
-      const confirmResult = await this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).catch(err=>err);
-      if(confirmResult !=="confirm"){
+      const confirmResult = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err);
+      if (confirmResult !== 'confirm') {
         return this.$message.info('取消删除');
       }
-      const {data:res} = await this.$http.delete(`goods/${id}`);
+      const { data: res } = await this.$http.delete(`goods/${id}`);
       console.log(id);
-      if(res.meta.status !==200) {
-       return  this.$message.error('删除商品失败');
+      if (res.meta.status !== 200) {
+        return this.$message.error('删除商品失败');
       }
       this.$message.success('删除成功');
       this.getGoodsList();
     },
     // 添加商品组件
-    goAddpage(){
+    goAddpage() {
       this.$router.push('/goods/add');
     }
   },
